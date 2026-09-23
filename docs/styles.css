@@ -193,7 +193,7 @@ a:hover {
 }
 
 .article {
-  max-width: 52rem;
+  max-width: 68rem;
   margin: 0 auto;
 }
 
@@ -214,7 +214,7 @@ a:hover {
 
 .hero h1 {
   margin: 0 0 0.65rem;
-  max-width: 22ch;
+  max-width: 18em;
   font-family: var(--font-serif);
   font-size: clamp(1.85rem, 3.8vw, 2.55rem);
   font-weight: 700;
@@ -374,8 +374,10 @@ section.report-section {
   background: none;
   border: none;
   border-bottom: 2px solid var(--accent);
+  border-radius: 0;
   cursor: pointer;
   text-align: left;
+  appearance: none;
 }
 
 .panel-toggle:hover {
@@ -681,6 +683,53 @@ tbody tr:nth-child(even) td {
   max-width: 40rem;
 }
 
+/* Prose-heavy pillar map: stack under the sidebar, keep a real table on wide screens. */
+@media (max-width: 1200px) {
+  table.clusters thead {
+    display: none;
+  }
+
+  table.clusters tr {
+    display: block;
+    padding: 0.9rem 1rem 0.45rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  table.clusters tr:last-child {
+    border-bottom: none;
+  }
+
+  table.clusters th[scope="row"],
+  table.clusters td {
+    display: block;
+    width: auto;
+    padding: 0.35rem 0 0.65rem;
+    border: none;
+    background: transparent;
+  }
+
+  table.clusters th[scope="row"] {
+    font-family: var(--font-serif);
+    font-size: 1.08rem;
+    padding-top: 0.15rem;
+  }
+
+  table.clusters td::before {
+    content: attr(data-label);
+    display: block;
+    margin-bottom: 0.12rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  table.clusters tbody tr:nth-child(even) td {
+    background: transparent;
+  }
+}
+
 @media (max-width: 900px) {
   .layout {
     grid-template-columns: 1fr;
@@ -822,6 +871,36 @@ tbody tr:nth-child(even) td {
   .callout {
     break-inside: avoid;
     page-break-inside: avoid;
+  }
+
+  table.clusters thead {
+    display: none;
+  }
+
+  table.clusters tr {
+    display: block;
+    break-inside: avoid;
+    page-break-inside: avoid;
+    margin-bottom: 0.75rem;
+    border-bottom: 1px solid #ccc;
+  }
+
+  table.clusters th[scope="row"],
+  table.clusters td {
+    display: block;
+    width: auto;
+    padding: 0.2rem 0 0.45rem;
+    border: none;
+    background: transparent !important;
+  }
+
+  table.clusters td::before {
+    content: attr(data-label);
+    display: block;
+    font-size: 9pt;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
   }
 
   .report-section {
